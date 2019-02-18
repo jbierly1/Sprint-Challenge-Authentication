@@ -29,9 +29,20 @@ Implement an User Authentication System in order to access the jokes from the Jo
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 1. What is the purpose of using _sessions_?
-1. What does bcrypt do to help us store passwords in a secure manner.
-1. What does bcrypt do to slow down attackers?
-1. What are the three parts of the JSON Web Token?
+
+Sessions are records kept on the backend of who is logged in at the moment.  This is done on the backend because HTTP is stateless, so any state (such as being logged in) needs to be managed elsewhere.  When a session is open, the user who opened the session can access those protected resources they are supposed to have access to.  They start a session by inputting their password.  If the hashed version of the password they entered matches the hash in the databse, then a new session is opened for them.
+
+2. What does bcrypt do to help us store passwords in a secure manner.
+
+Bcrypt takes care of the hashing of passwords for us, which is a process by which a string is turned algorithmically into a massive string of gibberish according to a mathematical logic only the server knows.
+
+3. What does bcrypt do to slow down attackers?
+B crypt hashes the password over and over again.  When an attacker sees a password has been hashed sixteen times, they decide it is not worth the expenditure of time to try to decode it sixteen times.
+
+4. What are the three parts of the JSON Web Token?
+
+The JSON Web Token consists of three strings separated by a '.'. The string is Base64 encoded, to be a stringified version of binary. The first string is the header, which specifies what kind of information this is ('jwt'), and the name of the hashing algorithm being used.  The second part is the payload, which contains a number of optional key value pairs to communicate information about the token and the information conveyed by the token.  The last part is the signature which contains a hashed version of the header, the payload, and a secret.  The secret is held on the backend and used to decode the token.
+
 
 ## Project Set Up
 
